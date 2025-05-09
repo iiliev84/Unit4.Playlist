@@ -11,11 +11,12 @@ app.route('/playlist').get((req,res)=>{
 })
 
 app.route('/playlist/:index').get((req,res)=>{
-    const index = req.params.index
-    if (index < 0 || index >= playlist.length){
+    const index = Number(req.params.index)
+    const found = playlist[index]
+    if (found){
+        res.send(found)
+        }else{
         res.status(404).send("That song does not exist in the playlist.")
-    }else{
-        res.send(playlist[index])
     }
 })
 
